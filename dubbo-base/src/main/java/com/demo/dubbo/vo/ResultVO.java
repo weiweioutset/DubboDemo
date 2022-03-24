@@ -56,6 +56,10 @@ public class ResultVO<T> implements Serializable {
         this.data = data;
     }
 
+    public static ResultVO success() {
+        return new ResultVO<>(200,"success");
+    }
+
     public static <T> ResultVO<T> success(T data) {
         ResultVO<T> result = new ResultVO<>(200,"success");
         result.setData(data);

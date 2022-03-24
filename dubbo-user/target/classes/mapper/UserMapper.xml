@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dubbo.mapper.UserMapper">
+    <insert id="register" useGeneratedKeys="true" keyColumn="id" keyProperty="id" parameterType="com.demo.dubbo.dto.UserDto">
+        INSERT INTO t_user_info_001(uuid,account_id,user_name,real_name,gender,
+        <if test="phone != null">
+            phone,
+        </if>
+        <if test="email != null">
+            email,
+        </if>
+        <if test="birthday != null">
+            birthday,
+        </if>
+        password,status)
+        VALUES (
+        #{uuid},#{accountId},#{userName},#{realName},#{gender},
+        <if test="phone != null">
+            #{phone},
+        </if>
+        <if test="email != null">
+            #{email},
+        </if>
+        <if test="birthday != null">
+            #{birthday},
+        </if>
+        #{password},#{status}
+        )
+    </insert>
+
+    <select id="queryByAccountId" resultMap="userMap">
+        SELECT * FROM t_user_info_001 WHERE account_id = #{accountId}
+    </select>
+
+    <resultMap id="userMap" type="com.demo.dubbo.dto.UserDto">
+        <id column="id" property="id"/>
+        <result column="uuid" property="uuid"/>
+        <result column="account_id" property="accountId"/>
+        <result column="user_name" property="userName"/>
+        <result column="real_name" property="realName"/>
+        <result column="english_name" property="englishName"/>
+        <result column="gender" property="gender"/>
+        <result column="password" property="password"/>
+        <result column="register_time" property="registerTime"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="birthday" property="birthday"/>
+        <result column="status" property="status"/>
+        <result column="avatar" property="avatar"/>
+        <result column="thumbnail_avatar" property="thumbnailAvatar"/>
+    </resultMap>
+ </mapper>

@@ -17,7 +17,7 @@ import java.util.Arrays;
  * @author weiwei
  * @version 1.0
  * @date 2022/3/1 下午10:49
- * @desc
+ * @desc RSA非对称加密算法工具类
  */
 public class RSAUtils {
     public static final String ENCRYPTION_ALGORITHM = "RSA";

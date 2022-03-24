@@ -13,4 +13,9 @@ public class BaseConstant {
     public static final String PATTERN_C = "yyyy-MM-dd";
     public static final String TIME_ZONE = "GTM+8";
 
+    // ====== 账号相关 ======
+    public static final int USER_STATUS_APPLY = 0;
+    public static final int USER_STATUS_ENABLE = 1;
+    public static final int USER_STATUS_DELETE = 2;
+    public static final int USER_STATUS_BLOCK = 3;
 }

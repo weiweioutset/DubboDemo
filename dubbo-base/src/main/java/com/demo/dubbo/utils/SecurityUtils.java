@@ -3,6 +3,8 @@ package com.demo.dubbo.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.UUID;
+
 /**
  * @author weiwei
  * @version 1.0
@@ -11,6 +13,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SecurityUtils {
     private static final Logger logger = LoggerFactory.getLogger(SecurityUtils.class);
+    private static final String DES_ENCRYPT_KEY = "A#B2C3D4E5F6070*CG=54/87";
 
     /**
      * RSA加密(私钥)
@@ -44,6 +47,44 @@ public class SecurityUtils {
             logger.error("RSA解密失败", e);
         }
         return content;
+    }
+
+    /**
+     * DES对称加密
+     * @param content 原文
+     * @return 密文
+     */
+    public static String DESEncrypt(String content) {
+        if (StringUtil.isEmpty(content)) {
+            return null;
+        }
+        try {
+            return DESUtil.encrypt(content, DES_ENCRYPT_KEY);
+        } catch (Exception e) {
+            logger.error("DES加密错误", e);
+        }
+        return content;
+    }
+
+    /**
+     * DES对称加密
+     * @param content 原文
+     * @return 密文
+     */
+    public static String DESDecrypt(String content) {
+        if (StringUtil.isEmpty(content)) {
+            return null;
+        }
+        try {
+            return DESUtil.decrypt(content, DES_ENCRYPT_KEY);
+        } catch (Exception e) {
+            logger.info("DES解密失败");
+        }
+        return null;
+    }
+
+    public static String getUUID() {
+        return UUID.randomUUID().toString();
     }
 
     public static void main(String[] args) throws Exception{

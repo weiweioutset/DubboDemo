@@ -4,6 +4,10 @@ import com.demo.dubbo.constant.BaseConstant;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -26,10 +30,12 @@ public class UserDto implements Serializable {
     /**
      * 账号
      */
+    @NotEmpty(message = "账号不能为空")
     private String accountId;
     /**
      * 用户名
      */
+    @NotEmpty(message = "用户名不能为空")
     private String userName;
     /**
      * 真实姓名
@@ -42,6 +48,7 @@ public class UserDto implements Serializable {
     /**
      * 性别
      */
+    @NotNull(message = "性别不能为空")
     private Integer gender;
     /**
      * 注册时间
@@ -60,14 +67,17 @@ public class UserDto implements Serializable {
     /**
      * 邮箱
      */
+    @Email(message = "邮箱不合法")
     private String email;
     /**
      * 密码（加密）
      */
+    @NotEmpty(message = "密码不能为空")
     private String password;
     /**
      * 生日
      */
+    @Past(message = "不能穿越")
     @JsonFormat(pattern = BaseConstant.PATTERN_C, timezone = BaseConstant.TIME_ZONE)
     private Date birthday;
     /**
@@ -185,5 +195,20 @@ public class UserDto implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" +
+                "uuid='" + uuid + '\'' +
+                ", accountId='" + accountId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", realName='" + realName + '\'' +
+                ", englishName='" + englishName + '\'' +
+                ", gender=" + gender +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday=" + birthday +
+                '}';
     }
 }

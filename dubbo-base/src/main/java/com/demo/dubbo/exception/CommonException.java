@@ -16,7 +16,8 @@ public class CommonException extends RuntimeException {
         this.exception = exception;
     }
 
-    private CommonException() {
+    public CommonException() {
+        super();
     }
 
     public CommonExceptionEnum getException() {
@@ -25,5 +26,17 @@ public class CommonException extends RuntimeException {
 
     public void setException(CommonExceptionEnum exception) {
         this.exception = exception;
+    }
+
+    public CommonException(String message) {
+        super(message);
+    }
+
+    public CommonException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public CommonException(Throwable cause) {
+        super(cause);
     }
 }

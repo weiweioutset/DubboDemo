@@ -19,3 +19,5 @@ spring:
   main:
     # 解决Bean重复定义问题
     allow-bean-definition-overriding: true
+  profiles:
+    active: dev

@@ -24,7 +24,7 @@ public interface IUserService {
      * @param password
      * @return
      */
-    UserDto login(String accountId, String password) throws CommonException;
+    UserDto login(String accountId, String password);
 
     /**
      * 更新用户信息
