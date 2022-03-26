@@ -6,10 +6,7 @@ import com.demo.dubbo.enums.CommonExceptionEnum;
 import com.demo.dubbo.exception.CommonException;
 import com.demo.dubbo.mapper.UserMapper;
 import com.demo.dubbo.service.user.IUserService;
-import com.demo.dubbo.utils.RSAUtils;
-import com.demo.dubbo.utils.SecurityUtils;
-import com.demo.dubbo.utils.StringUtil;
-import com.demo.dubbo.utils.UserSecurityUtils;
+import com.demo.dubbo.utils.*;
 import com.sun.istack.internal.NotNull;
 import org.apache.dubbo.config.annotation.Service;
 import org.slf4j.Logger;
@@ -74,11 +71,11 @@ public class UserServiceImpl implements IUserService {
             throw new CommonException(CommonExceptionEnum.ACCOUNT_BE_BLOCKED);
         }
         // 判断密码是否正确
-        if (UserSecurityUtils.checkPassword(password, userDto)) {
-            logger.info("用户[{}]登录成功", userDto.getAccountId());
-            return userDto;
+        if (!UserSecurityUtils.checkPassword(password, userDto)) {
+            throw new CommonException(CommonExceptionEnum.LOGIN_ERROR);
         }
-        throw new CommonException(CommonExceptionEnum.LOGIN_ERROR);
+        logger.info("用户[{}]登录成功", userDto.getAccountId());
+        return userDto;
     }
 
     @Override

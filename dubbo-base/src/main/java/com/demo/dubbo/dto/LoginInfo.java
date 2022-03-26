@@ -1,24 +1,14 @@
 package com.demo.dubbo.dto;
 
-import com.demo.dubbo.constant.BaseConstant;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @author weiwei
  * @version 1.0
- * @date 2022/3/1 下午3:58
- * @desc
+ * @date 2022/3/26 上午10:41
+ * @desc 用户登录信息
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class UserDto implements Serializable {
+public class LoginInfo implements Serializable {
     /**
      * id
      */
@@ -30,12 +20,10 @@ public class UserDto implements Serializable {
     /**
      * 账号
      */
-    @NotEmpty(message = "账号不能为空")
     private String accountId;
     /**
      * 用户名
      */
-    @NotEmpty(message = "用户名不能为空")
     private String userName;
     /**
      * 真实姓名
@@ -48,18 +36,7 @@ public class UserDto implements Serializable {
     /**
      * 性别
      */
-    @NotNull(message = "性别不能为空")
     private Integer gender;
-    /**
-     * 注册时间
-     */
-    @JsonFormat(pattern = BaseConstant.PATTERN_A, timezone = BaseConstant.TIME_ZONE)
-    private Date registerTime;
-    /**
-     * 更新时间
-     */
-    @JsonFormat(pattern = BaseConstant.PATTERN_A, timezone = BaseConstant.TIME_ZONE)
-    private Date updateTime;
     /**
      * 电话
      */
@@ -67,19 +44,7 @@ public class UserDto implements Serializable {
     /**
      * 邮箱
      */
-    @Email(message = "邮箱不合法")
     private String email;
-    /**
-     * 密码（加密）
-     */
-    @NotEmpty(message = "密码不能为空")
-    private String password;
-    /**
-     * 生日
-     */
-    @Past(message = "不能穿越")
-    @JsonFormat(pattern = BaseConstant.PATTERN_C, timezone = BaseConstant.TIME_ZONE)
-    private Date birthday;
     /**
      * 账号状态 0 申请中 1有效 2删除 3封号
      */
@@ -149,22 +114,6 @@ public class UserDto implements Serializable {
         this.gender = gender;
     }
 
-    public Date getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setRegisterTime(Date registerTime) {
-        this.registerTime = registerTime;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -179,22 +128,6 @@ public class UserDto implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
     }
 
     public Integer getStatus() {
@@ -221,18 +154,25 @@ public class UserDto implements Serializable {
         this.thumbnailAvatar = thumbnailAvatar;
     }
 
-    @Override
-    public String toString() {
-        return "UserDto{" +
-                "uuid='" + uuid + '\'' +
-                ", accountId='" + accountId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", realName='" + realName + '\'' +
-                ", englishName='" + englishName + '\'' +
-                ", gender=" + gender +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", birthday=" + birthday +
-                '}';
+    /**
+     * 初始化登录信息
+     * @param user
+     * @return
+     */
+    public static LoginInfo init(UserDto user) {
+        LoginInfo loginInfo = new LoginInfo();
+        loginInfo.setId(user.getId());
+        loginInfo.setAccountId(user.getAccountId());
+        loginInfo.setUuid(user.getUuid());
+        loginInfo.setUserName(user.getUserName());
+        loginInfo.setRealName(user.getRealName());
+        loginInfo.setEnglishName(user.getEnglishName());
+        loginInfo.setGender(user.getGender());
+        loginInfo.setPhone(user.getPhone());
+        loginInfo.setEmail(user.getEmail());
+        loginInfo.setStatus(user.getStatus());
+        loginInfo.setAvatar(user.getAvatar());
+        loginInfo.setThumbnailAvatar(user.getThumbnailAvatar());
+        return loginInfo;
     }
 }

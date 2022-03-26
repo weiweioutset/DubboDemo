@@ -6,6 +6,7 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
@@ -181,9 +182,13 @@ public class RSAUtils {
 
     public static void main(String[] args) throws Exception {
         String key = publicKeyEncrypt("weiwei145905");
+        System.out.println(key);
 
-        String result = privateKeyDecrypt(key);
+        String test = "RBmiDbQTxnAyVn11qsndFlnkY4BX3OTpViSOH35YCaJBPR2BwdGqfNe47N0d4HlSyiv0nHoIb3aWycIG8+syfyYp/qjkBmdNeFTjvINKniKSH6YkIhZUuey5UzdknG0QmP48/eTjZF8H7QaCVoWNOsJs+EB4aS6m7JpoztUB6d0=";
+        String encode = URLEncoder.encode(test, "UTF-8");
+        String result = privateKeyDecrypt(test);
+        System.out.println(encode);
 
-        System.out.println(key + "\n" + result + "\n" + privateKeyEncrypt(result));
+//        System.out.println(key + "\n" + result + "\n" + privateKeyEncrypt(result));
     }
 }

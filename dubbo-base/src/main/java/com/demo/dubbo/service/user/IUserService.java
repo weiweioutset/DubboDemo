@@ -3,6 +3,9 @@ package com.demo.dubbo.service.user;
 import com.demo.dubbo.dto.UserDto;
 import com.demo.dubbo.exception.CommonException;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * @author weiwei

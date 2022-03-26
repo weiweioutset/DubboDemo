@@ -25,6 +25,7 @@ public enum CommonExceptionEnum {
     ACCOUNT_DELETED(30008, "账号已被删除"),
     ACCOUNT_BE_BLOCKED(30009, "账号已被冻结"),
     LOGIN_ERROR(30010, "登录失败"),
+    NO_LOGIN(30011, "账号未登录"),
     ;
 
     CommonExceptionEnum(int code, String message) {

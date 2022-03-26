@@ -13,8 +13,9 @@ dubbo:
     address: zookeeper://120.55.85.54:2181
   # 设置超时时间
   consumer:
-    timeout: 4000
+    timeout: 60000
     check: false
+    retries: 0
 spring:
   main:
     # 解决Bean重复定义问题
