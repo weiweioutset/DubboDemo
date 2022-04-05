@@ -1,5 +1,11 @@
 package com.demo.dubbo.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mobile.device.Device;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
 /**
  * @author weiwei
  * @version 1.0

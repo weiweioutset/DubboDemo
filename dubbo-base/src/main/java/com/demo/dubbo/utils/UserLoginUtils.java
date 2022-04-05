@@ -5,6 +5,8 @@ import com.demo.dubbo.dto.LoginInfo;
 import com.demo.dubbo.dto.UserDto;
 import com.demo.dubbo.enums.CommonExceptionEnum;
 import com.demo.dubbo.exception.CommonException;
+import com.demo.dubbo.service.user.ILoginHistoryService;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -26,6 +28,8 @@ import java.util.concurrent.TimeUnit;
 public class UserLoginUtils {
     @Autowired
     private RedisUtils redisUtils;
+    @Reference
+    private ILoginHistoryService historyService;
 
     private static UserLoginUtils bean;
 

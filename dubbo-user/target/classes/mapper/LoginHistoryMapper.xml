@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.dubbo.mapper.LoginHistoryMapper">
+    <insert id="addHistory" parameterType="com.demo.dubbo.entity.LoginHistoryEntity">
+        INSERT INTO user_login_history_001
+            (
+             uuid,account_id,login_device,
+             device_type,login_ip
+             )
+        VALUES
+            (
+             #{uuid},#{accountId},#{loginDevice},
+             #{deviceType},#{loginIp}
+            )
+
+    </insert>
+</mapper>
